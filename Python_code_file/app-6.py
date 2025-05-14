@@ -262,8 +262,8 @@ def generate_recommendation(df: pd.DataFrame, indicators: pd.DataFrame) -> tuple
 
 # Function to perform advanced backtest
 def backtest_strategy(df: pd.DataFrame, indicators: pd.DataFrame, bt_sma1: int, bt_sma2: int, bt_macd: bool) -> tuple:
-    if df.empty or indicators.empty:
-        logger.warning("Empty data in backtest_strategy")
+    if df.empty or indicators.empty or len(df) < 2 or len(indicators) < 2:
+        logger.warning("Insufficient data for backtest_strategy")
         return 0.0, 0.0, [], 0.0, 0.0
     
     signals = []
@@ -275,6 +275,10 @@ def backtest_strategy(df: pd.DataFrame, indicators: pd.DataFrame, bt_sma1: int, 
     
     try:
         for i in range(1, len(df)):
+            if i >= len(indicators) or i-1 >= len(indicators):
+                logger.warning(f"Index out of bounds in backtest_strategy at i={i}")
+                continue
+                
             buy_signal = (indicators['SMA1'][i] > indicators['SMA2'][i] and 
                           indicators['SMA1'][i-1] <= indicators['SMA2'][i-1])
             if bt_macd:
@@ -297,8 +301,8 @@ def backtest_strategy(df: pd.DataFrame, indicators: pd.DataFrame, bt_sma1: int, 
                     peak = max(peak, equity[-1])
                     drawdown = (peak - equity[-1]) / peak
                     max_drawdown = max(max_drawdown, drawdown)
-    except IndexError as e:
-        logger.error(f"IndexError in backtest_strategy: {str(e)}")
+    except Exception as e:
+        logger.error(f"Error in backtest_strategy: {str(e)}")
         return 0.0, 0.0, [], 0.0, 0.0
     
     total_return = ((equity[-1] - equity[0]) / equity[0] * 100) if equity else 0
@@ -377,8 +381,9 @@ def create_chart(df: pd.DataFrame, indicators: pd.DataFrame, ticker: str, curren
         fig.add_hline(y=resistance1, line_dash="dot", line_color="red", annotation_text="R1", row=1, col=1)
         
         # Add backtest signals
-        buy_signals = [(s[1], s[2]) for s in backtest_signals if len(s) >= 3 and s[0] == 'Buy']
-        sell_signals = [(s[1], s[2]) for s in backtest_signals if len(s) >= 3 and s[0] == 'Sell']
+        valid_signals = [s for s in backtest_signals if isinstance(s, (list, tuple)) and len(s) >= 3]
+        buy_signals = [(s[1], s[2]) for s in valid_signals if s[0] == 'Buy']
+        sell_signals = [(s[1], s[2]) for s in valid_signals if s[0] == 'Sell']
         if buy_signals:
             buy_x, buy_y = zip(*buy_signals)
             fig.add_trace(go.Scatter(x=buy_x, y=buy_y, mode='markers', name='Buy Signals', marker=dict(symbol='triangle-up', size=10, color='green')), row=1, col=1)
@@ -520,8 +525,8 @@ Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 ## Backtest Results
 - **Total Return**: {backtest_results[0]:.2f}%
 - **Win Rate**: {backtest_results[1]:.2f}%
-- **Sharpe Ratio**: {backtest_results[3]:.2f}
-- **Max Drawdown**: {backtest_results[4]:.2f}%
+- **Sharpe Ratio**: {backtest_results[2]:.2f}
+- **Max Drawdown**: {backtest_results[3]:.2f}%
 
 ## Conclusion
 This analysis suggests a **{recommendation}** position based on advanced technical indicators and sentiment analysis. Use the risk management parameters and backtest results to inform your trading decisions. Always combine with fundamental analysis.
@@ -658,15 +663,15 @@ def main():
         try:
             with st.spinner("Analyzing..."):
                 df, info = fetch_stock_data(ticker, period, interval)
-                if df.empty:
-                    st.error("No data found for the ticker.")
+                if df.empty or len(df) < 2:
+                    st.error("No data found or insufficient data for the ticker.")
                     logger.error(f"No data for ticker {ticker}")
                     return
                 
                 currency, currency_symbol = get_currency_and_symbol(info)
                 indicators = calculate_indicators(df, sma1_window, sma2_window, rsi_window, macd_fast, macd_slow, macd_signal, bb_window, bb_dev)
-                if indicators.empty:
-                    st.error("Failed to calculate indicators.")
+                if indicators.empty or len(indicators) < 2:
+                    st.error("Failed to calculate indicators or insufficient indicator data.")
                     logger.error(f"Empty indicators for {ticker}")
                     return
                 
@@ -782,7 +787,8 @@ def main():
                 )
                 
                 # Export backtest signals
-                signals_df = pd.DataFrame(backtest_signals, columns=['Type', 'Date', 'Price']) if backtest_signals else pd.DataFrame()
+                valid_signals = [s for s in backtest_signals if isinstance(s, (list, tuple)) and len(s) >= 3]
+                signals_df = pd.DataFrame(valid_signals, columns=['Type', 'Date', 'Price']) if valid_signals else pd.DataFrame()
                 if not signals_df.empty:
                     signals_csv = signals_df.to_csv(index=False)
                     st.download_button(
