@@ -21,6 +21,7 @@ python --version
 
 ```
 pip install --upgrade streamlit yfinance pandas numpy plotly ta
+pip install streamlit yfinance pandas numpy plotly ta seaborn matplotlib
 pip install streamlit==1.38.0
 pip cache purge
 ```
