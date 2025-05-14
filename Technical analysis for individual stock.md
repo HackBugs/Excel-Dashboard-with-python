@@ -7,12 +7,19 @@ pip install dash
 pip install dash-bootstrap-components
 pip install openpyxl
 pip install ta
-```
+pip show streamlit
+pip install --upgrade streamlit
 
-```
 pip install streamlit yfinance pandas numpy plotly ta
+pip install curl_cffi
+pip install curl_cffi --only-binary :all:
+pip install requests
+python --version
+```
 
 ## For running the program
+
+```
 python app.py
 streamlit run app.py
 python -m streamlit run app-5.py
