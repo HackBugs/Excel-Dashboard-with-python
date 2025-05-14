@@ -1,3 +1,39 @@
+
+## Install These Dependencies
+
+```
+pip install pandas
+pip install nsepy
+pip install yfinance
+pip install plotly
+pip install dash
+pip install dash-bootstrap-components
+pip install openpyxl
+pip install ta
+pip show streamlit
+pip install --upgrade streamlit
+
+pip install streamlit yfinance pandas numpy plotly ta
+pip install curl_cffi
+pip install curl_cffi --only-binary :all:
+pip install requests
+python --version
+```
+
+```
+pip install --upgrade streamlit yfinance pandas numpy plotly ta
+pip install streamlit==1.38.0
+pip cache purge
+```
+
+## For running the program
+
+```
+python app.py
+streamlit run app.py
+python -m streamlit run app-5.py
+```
+
 # Excel-Dashboard-with-python
 
 ## This script is a Python program that generates a shift schedule for a team of 5 people from April to December. It creates an Excel file with the schedule. To run this script, you'll need to install several Python packages.
