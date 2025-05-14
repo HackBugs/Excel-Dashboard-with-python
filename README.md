@@ -8,6 +8,7 @@ pip install -r requirements.txt
 ```
 
 ```
+pip install streamlit
 pip install streamlit yfinance pandas numpy plotly ta seaborn matplotlib
 pip install yfinance streamlit pandas numpy plotly ta seaborn matplotlib
 ```
