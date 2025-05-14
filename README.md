@@ -1,6 +1,8 @@
 ## CMD FOR 
 streamlit run app-6.py
 
+[vvisual-cpp-build-tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+
 ```
 pip install streamlit yfinance pandas numpy plotly ta seaborn matplotlib
 pip install yfinance streamlit pandas numpy plotly ta seaborn matplotlib
