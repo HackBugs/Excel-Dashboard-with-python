@@ -11,7 +11,11 @@ pip install ta
 
 ```
 pip install streamlit yfinance pandas numpy plotly ta
+
+## For running the program
+python app.py
 streamlit run app.py
+python -m streamlit run app-5.py
 ```
 ## requirements.txt
 
