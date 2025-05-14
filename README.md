@@ -1,3 +1,27 @@
+## cmd for 
+streamlit run app-6.py
+
+```
+pip install streamlit yfinance pandas numpy plotly ta seaborn matplotlib
+```
+
+```
+cd E:\Coding\Attandance\Stock sheet
+pip install --upgrade streamlit yfinance pandas numpy plotly ta seaborn matplotlib
+```
+
+```
+python -m venv venv
+.\venv\Scripts\activate
+pip install streamlit yfinance pandas numpy plotly ta seaborn matplotlib
+streamlit run app-5.py
+```
+
+```
+py -3.12 -m venv venv
+.\venv\Scripts\activate
+pip install streamlit yfinance pandas numpy plotly ta seaborn matplotlib
+```
 
 ## Install These Dependencies
 
