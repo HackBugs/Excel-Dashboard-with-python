@@ -17,6 +17,12 @@ pip install requests
 python --version
 ```
 
+```
+pip install --upgrade streamlit yfinance pandas numpy plotly ta
+pip install streamlit==1.38.0
+pip cache purge
+```
+
 ## For running the program
 
 ```
