@@ -1,4 +1,4 @@
-## cmd for 
+## CMD FOR 
 streamlit run app-6.py
 
 ```
