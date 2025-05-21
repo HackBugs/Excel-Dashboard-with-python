@@ -1,9 +1,9 @@
+- > Stock Market Traders Data Provider / Data vendors share market
+- > AMIBROKER AFL Script Library 
+- > Excel Macro Script Library
+1. https://github.com/Pritesh-Mhatre/amibroker-library
 
-1. AMIBROKER AFL Script Library 
-2. Excel Macro Script Library
-3. https://github.com/Pritesh-Mhatre/amibroker-library
-
-4. https://github.com/OpenBB-finance/OpenBB
+2. https://github.com/OpenBB-finance/OpenBB
 
 ---
 
