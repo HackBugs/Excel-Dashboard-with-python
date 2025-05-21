@@ -1,6 +1,7 @@
 
 1. AMIBROKER AFL Script Library 
 2. Excel Macro Script Library
+3. https://github.com/Pritesh-Mhatre/amibroker-library
 
 ---
 
