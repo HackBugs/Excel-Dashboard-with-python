@@ -3,6 +3,8 @@
 2. Excel Macro Script Library
 3. https://github.com/Pritesh-Mhatre/amibroker-library
 
+4. https://github.com/OpenBB-finance/OpenBB
+
 ---
 
 1. AmiBroker - Getintopc
