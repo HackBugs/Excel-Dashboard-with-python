@@ -3,7 +3,7 @@
 2. 🔍 Google - daily bhav copy nse or daily bhav copy bse
 3. https://www.samco.in/bhavcopy-nse-bse-mcx
 4. Video / https://www.youtube.com/watch?v=pBw04SKQiKg
-5. Amibroker Tutorial AFL Code Import of  Stocks List Technical Analysis
+5. Amibroker Tutorial AFL Code Import of  Stocks List Technical Analysis - https://www.amibroker.com/kb/toc/
 
 ## **Complete table format** and category-wise summarize** table of tools and websites.
 
