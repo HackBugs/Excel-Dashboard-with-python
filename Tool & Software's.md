@@ -1,4 +1,7 @@
 
+AMIBROKER AFL Script Library 
+Excel Macro Script Library
+
 1. AmiBroker - Getintopc
 2. 🔍 Google - daily bhav copy nse or daily bhav copy bse
 3. https://www.samco.in/bhavcopy-nse-bse-mcx
